@@ -467,6 +467,7 @@ uint8_t Temperature::soft_pwm_amount[HOTENDS];
           SERIAL_PROTOCOLPAIR("#define DEFAULT_bedKi ", workKi); SERIAL_EOL();
           SERIAL_PROTOCOLPAIR("#define DEFAULT_bedKd ", workKd); SERIAL_EOL();
         #endif
+        SERIAL_PROTOCOLPAIR("// M301 E", hotend); SERIAL_PROTOCOLPAIR(" P", workKp); SERIAL_PROTOCOLPAIR(" I", workKi); SERIAL_PROTOCOLPAIR(" D", workKd); SERIAL_EOL();
 
         #define _SET_BED_PID() do { \
           bedKp = workKp; \

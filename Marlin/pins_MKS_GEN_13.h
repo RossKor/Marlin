@@ -54,6 +54,31 @@
 #include "pins_RAMPS.h"
 
 //
+// Limit Switches
+//
+// Interrupt capable pins for ATMEGA are 2, 3, 18, 19, 20, 21
+// see https://adrian.siemieniak.net/portal/mks-gen-1-4-board-with-tmc2130-and-marlin-firmware-howto/
+#undef X_MIN_PIN
+#undef X_MAX_PIN
+#undef Y_MIN_PIN
+#undef Y_MAX_PIN
+//#undef Z_MIN_PIN
+//#undef Z_MAX_PIN
+
+// Default configuration from pins_RAMPS.h
+//#define X_MIN_PIN           3
+//#define X_MAX_PIN           2
+//#define Y_MIN_PIN          14
+//#define Y_MAX_PIN          15
+//#define Z_MIN_PIN          18
+//#define Z_MAX_PIN          19
+#define X_MIN_PIN           3
+#define X_MAX_PIN           3
+#define Y_MIN_PIN           2
+#define Y_MAX_PIN           2
+
+
+//
 // LCD / Controller
 //
 #if ENABLED(VIKI2) || ENABLED(miniVIKI)
@@ -140,5 +165,74 @@
 
   // white                BLUE-LED
   #define STAT_LED_BLUE_PIN 17
+
+#endif
+
+#if ENABLED(ENDER2_STOCKDISPLAY)
+  /**
+   * ENDER2_STOCKDISPLAY Has two groups of wires with...
+   *
+   * +Vin     + Input supply
+   * GND      Ground Pin
+   * MOSI     Data input for LCD
+   * SCK      Clock for LCD
+   * AO       Reg. Sel for LCD
+   * LCS      Chip Select for LCD
+   * ENCA     Encoder output A
+   * ENCB     Encoder output B
+   * ENCBTN   Encoder button switch
+   *
+   * BUZZER   Piezo buzzer (non-stock)
+   *
+   * This configuration uses the following arrangement:
+   *
+   * EXP1 D37 = BUZZER  D35 = ENCBTN   EXP2 D50 = ---  D52 = SCK
+   *      D17 = ENCA    D16 = A0            D31 = ---  D53 = ---
+   *      D23 = ENCB    D25 = LCS           D33 = ---  D51 = MOSI
+   *      D27 = ---     D29 = ---           D49 = ---  RST = ---
+   *      GND = GND     5V  = 5V            GND = ---  D41 = ---
+   */
+
+  #undef BTN_EN1
+  #undef BTN_EN2
+  #undef BTN_ENC
+  #undef DOGLCD_A0
+  #undef DOGLCD_CS
+  #undef SD_DETECT_PIN
+  #undef BEEPER_PIN
+  #undef KILL_PIN
+  #undef DOGLCD_MOSI 
+  #undef DOGLCD_SCK
+  
+  //
+  // EXP1 - CREALITY Ender-2 Dispaly - Header must be connected rotated 180deg!
+  //
+  
+  // brown                SCK
+  #define DOGLCD_SCK      37
+  
+  // red                  ENCBTN
+  #define BTN_ENC         35
+  
+  // orange               ENCA
+  #define BTN_EN1         17
+  
+  // yellow               Not connected (could be made a BUZZER)
+  // #define BEEPER_PIN      16
+  
+  // green                ENCB
+  #define BTN_EN2         23
+  
+  // blue                 A0
+  #define DOGLCD_A0       25
+  
+  // purple               LCS
+  #define DOGLCD_CS       27
+  
+  // gray                 MOSI
+  #define DOGLCD_MOSI     29
+
+                       // GND   white
+                       // 5V    black
 
 #endif

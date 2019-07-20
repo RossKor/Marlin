@@ -119,6 +119,15 @@
   #ifndef ST7920_DELAY_3
     #define ST7920_DELAY_3 DELAY_NS(125)
   #endif
+    
+  #elif ENABLED(ENDER2_STOCKDISPLAY)
+  
+    #define DOGLCD
+    #define U8GLIB_ST7565_64128N
+    #define ULTIMAKERCONTROLLER
+    #define LCD_CONTRAST_MIN        0
+    #define LCD_CONTRAST_MAX      255
+    #define DEFAULT_LCD_CONTRAST  110
 
 #elif ENABLED(MKS_12864OLED)
 
@@ -356,6 +365,7 @@
    || ENABLED(VIKI2) \
    || ENABLED(miniVIKI) \
    || ENABLED(ELB_FULL_GRAPHIC_CONTROLLER) \
+   || ENABLED(ENDER2_STOCKDISPLAY) \
   )
 
   #if HAS_LCD_CONTRAST
