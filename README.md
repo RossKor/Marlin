@@ -1,3 +1,12 @@
+# PERSONAL FORK FOR MY ENDER 2
+I've heavily modified my ender 2 - here's my setup
++ MKS Gen 1.4
++ TMC2130 drivers
++ Z-Probe
++ E3D Hotend
++ Fanless power supply (not that it matters)
++ I am however using the stock ender 2 LCD - see pins_MKS_GEN_13.h
+
 # Marlin 3D Printer Firmware
 <img align="right" src="../../raw/1.1.x/buildroot/share/pixmaps/logo/marlin-250.png" />
 
